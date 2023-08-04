@@ -1,7 +1,7 @@
 {
   "imports": {
     "mcandeia/bins/": "./bins/",
-    "$live/": "../deco/",
+    "$live/": "https://denopkg.com/deco-cx/deco@a2cdca08f984ced8260744170aa5d292306c096c/",
     "$fresh/": "https://denopkg.com/deco-cx/fresh@1.3.3/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",
