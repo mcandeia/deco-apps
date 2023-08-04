@@ -1,4 +1,4 @@
-import { AppContext } from "../deco.app.ts";
+import { AppContext } from "../mod.ts";
 export interface Props {
   status: number;
 }
