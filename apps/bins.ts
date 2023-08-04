@@ -1,12 +1,13 @@
-import { AppContext as AC, App, AppManifest } from "../deps.ts";
+import { App, AppContext as AC, AppManifest } from "../deps.ts";
 import * as binLoader from "../loaders/bin.ts";
 export interface BinProps {
   url: string;
 }
 
+export const name = "mcandeia/deco-apps";
 const manifest = {
   loaders: {
-    "http://denopkg.com/mcandeia/deco-apps/loaders/bin.ts": binLoader,
+    "mcandeia/deco-apps/loaders/bin.ts": binLoader,
   },
 } satisfies AppManifest;
 
