@@ -1,4 +1,4 @@
-import { AppContext } from "../apps/bins.ts";
+import { AppContext } from "../deco.app.ts";
 export interface Props {
   status: number;
 }
