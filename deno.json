@@ -1,8 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "component": "deno eval 'import \"$live/scripts/component.ts\"'",
-    "check": "deno fmt && deno lint && deno check dev.ts main.ts",
+    "check": "deno fmt && deno lint",
     "release": "deno eval 'import \"$live/scripts/release.ts\"'",
     "start": "deno eval 'import \"$live/scripts/apps/bundle.ts\"'",
     "link": "deno eval 'import \"$live/scripts/apps/link.ts\"'",
@@ -11,7 +10,10 @@
   "githooks": {
     "pre-commit": "check"
   },
-  "exclude": ["static", "README.md"],
+  "exclude": [
+    "static",
+    "README.md"
+  ],
   "importMap": "./import_map.json",
   "compilerOptions": {
     "jsx": "react-jsx",

@@ -1,10 +1,10 @@
 const apps = [{
-  dir: "./bins",
-  name: "mcandeia/bins",
+  dir: "./app",
+  name: "deco",
 }];
 
 const config = {
-    apps,
-}
+  apps,
+};
 
 export default config;
