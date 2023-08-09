@@ -7,10 +7,19 @@ import manifest, { Manifest, name } from "./manifest.gen.ts";
 export { name };
 
 export interface State {
+  /**
+   * @title Installed Apps
+   */
   apps: Apps[];
+  /**
+   * @title Site Map
+   */
   routes: Routes[];
 }
 
+/**
+ * @title Site
+ */
 export default function App(
   state: State,
 ): AppRuntime {

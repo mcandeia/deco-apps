@@ -3,18 +3,26 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $$$0 from "./loaders/state.ts";
-import * as $$$1 from "./loaders/secret.ts";
+import * as $$$1 from "./loaders/image.ts";
+import * as $$$2 from "./loaders/redirectsFromCsv.ts";
+import * as $$$3 from "./loaders/secret.ts";
+import * as $$$4 from "./loaders/font.ts";
 import * as $$$$0 from "./handlers/routesSelection.ts";
 import * as $$$$1 from "./handlers/router.ts";
 import * as $$$$2 from "./handlers/devPage.ts";
-import * as $$$$3 from "./handlers/proxy.ts";
-import * as $$$$4 from "./handlers/fresh.ts";
-import * as $$$$5 from "./handlers/redirect.ts";
+import * as $$$$3 from "./handlers/sitemap.ts";
+import * as $$$$4 from "./handlers/proxy.ts";
+import * as $$$$5 from "./handlers/fresh.ts";
+import * as $$$$6 from "./handlers/redirect.ts";
 import * as $$$$$0 from "./pages/LivePage.tsx";
 import * as $$$$$$0 from "./sections/UseSlot.tsx";
 import * as $$$$$$1 from "./sections/Slot.tsx";
-import * as $$$$$$2 from "./sections/EmptySection.tsx";
-import * as $$$$$$3 from "./sections/PageInclude.tsx";
+import * as $$$$$$2 from "./sections/SEO.tsx";
+import * as $$$$$$3 from "./sections/EmptySection.tsx";
+import * as $$$$$$4 from "./sections/PageInclude.tsx";
+import * as $$$$$$5 from "./sections/SEOPLP.tsx";
+import * as $$$$$$6 from "./sections/Analytics.tsx";
+import * as $$$$$$7 from "./sections/SEOPDP.tsx";
 import * as $$$$$$$0 from "./matchers/date.ts";
 import * as $$$$$$$1 from "./matchers/environment.ts";
 import * as $$$$$$$2 from "./matchers/site.ts";
@@ -35,23 +43,31 @@ import { AppManifest } from "$live/types.ts";
 
 const manifest = {
   "loaders": {
-    "site/loaders/secret.ts": $$$1,
+    "site/loaders/font.ts": $$$4,
+    "site/loaders/image.ts": $$$1,
+    "site/loaders/redirectsFromCsv.ts": $$$2,
+    "site/loaders/secret.ts": $$$3,
     "site/loaders/state.ts": $$$0,
   },
   "handlers": {
     "site/handlers/devPage.ts": $$$$2,
-    "site/handlers/fresh.ts": $$$$4,
-    "site/handlers/proxy.ts": $$$$3,
-    "site/handlers/redirect.ts": $$$$5,
+    "site/handlers/fresh.ts": $$$$5,
+    "site/handlers/proxy.ts": $$$$4,
+    "site/handlers/redirect.ts": $$$$6,
     "site/handlers/router.ts": $$$$1,
     "site/handlers/routesSelection.ts": $$$$0,
+    "site/handlers/sitemap.ts": $$$$3,
   },
   "pages": {
     "site/pages/LivePage.tsx": $$$$$0,
   },
   "sections": {
-    "site/sections/EmptySection.tsx": $$$$$$2,
-    "site/sections/PageInclude.tsx": $$$$$$3,
+    "site/sections/Analytics.tsx": $$$$$$6,
+    "site/sections/EmptySection.tsx": $$$$$$3,
+    "site/sections/PageInclude.tsx": $$$$$$4,
+    "site/sections/SEO.tsx": $$$$$$2,
+    "site/sections/SEOPDP.tsx": $$$$$$7,
+    "site/sections/SEOPLP.tsx": $$$$$$5,
     "site/sections/Slot.tsx": $$$$$$1,
     "site/sections/UseSlot.tsx": $$$$$$0,
   },
