@@ -9,8 +9,8 @@ import { isAwaitable } from "$live/engine/core/utils.ts";
 import { Route, Routes } from "$live/flags/audience.ts";
 import { isFreshCtx } from "$live/handlers/fresh.ts";
 import { Flag, LiveState, RouterContext } from "$live/types.ts";
-import { AppContext } from "../mod.ts";
 import { ConnInfo, Handler } from "std/http/server.ts";
+import { AppContext } from "../mod.ts";
 
 export interface SelectionConfig {
   audiences: Routes[];
@@ -162,14 +162,16 @@ export const buildRoutes = (audiences: Routes[]): [
  * @description Select routes based on the target audience.
  */
 export default function RoutesSelection(
-  { audiences }: SelectionConfig,
+  _props: unknown,
   ctx: AppContext,
 ): Handler {
   return async (req: Request, connInfo: ConnInfo): Promise<Response> => {
     const t = isFreshCtx<LiveState>(connInfo) ? connInfo.state.t : undefined;
 
     // everyone should come first in the list given that we override the everyone value with the upcoming flags.
-    const [routes, hrefRoutes] = buildRoutes([...audiences, ...ctx.routes]);
+    const [routes, hrefRoutes] = buildRoutes(
+      Array.isArray(ctx.routes) ? ctx.routes : [],
+    );
     // build the router from entries
     const builtRoutes = Object.entries(routes).sort((
       [routeStringA, { highPriority: highPriorityA }],
