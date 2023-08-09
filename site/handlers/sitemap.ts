@@ -1,12 +1,12 @@
 import type { Handler } from "$live/blocks/handler.ts";
 import type { Resolvable } from "$live/engine/core/resolver.ts";
 import { isResolvable } from "$live/engine/core/resolver.ts";
-import { Route } from "..//flags/audience.ts";
 import { ConnInfo } from "std/http/server.ts";
+import { Route } from "../flags/audience.ts";
 
 const isPage = (handler: Resolvable<Handler>) =>
   isResolvable(handler) &&
-  handler.__resolveType === "$live/handlers/fresh.ts";
+  handler.__resolveType.endsWith("handlers/fresh.ts");
 
 const isAbsolute = (href: string) =>
   !href.includes(":") && !href.includes("*") && !href.startsWith("/_live");

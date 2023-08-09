@@ -1,9 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import { isSection, Section } from "$live/blocks/section.ts";
-import LiveAnalytics from "../components/Analytics.tsx";
-import LiveControls from "../components/Controls.tsx";
-import LivePageEditor, { BlockControls } from "../components/PageEditor.tsx";
-import LivePolyfills from "../components/Polyfills.tsx";
 import { ComponentMetadata, PreactComponent } from "$live/engine/block.ts";
 import { context } from "$live/live.ts";
 import {
@@ -12,6 +8,9 @@ import {
 } from "$live/routes/[...catchall].tsx";
 import { createContext, JSX } from "preact";
 import { useContext } from "preact/hooks";
+import LiveAnalytics from "../components/Analytics.tsx";
+import LiveControls from "../components/Controls.tsx";
+import LivePolyfills from "../components/Polyfills.tsx";
 import { isLivePageProps } from "../sections/PageInclude.tsx";
 import { CONTENT_SLOT_NAME } from "../sections/Slot.tsx";
 import { Props as UseSlotProps } from "../sections/UseSlot.tsx";
@@ -36,10 +35,7 @@ export interface Props {
 
 type Mode = "default" | "edit";
 
-export function renderSectionFor(mode: Mode, isPreview: boolean) {
-  const isEditMode = mode === "edit";
-  const Controls = isEditMode ? BlockControls : () => null;
-
+export function renderSectionFor(isPreview: boolean) {
   return function _renderSection(
     { Component: Section, props, metadata }: Props["sections"][0],
     idx: number
@@ -52,14 +48,13 @@ export function renderSectionFor(mode: Mode, isPreview: boolean) {
           isPreview ? JSON.stringify(metadata?.resolveChain) : undefined
         }
       >
-        <Controls metadata={metadata} />
         <Section {...props} />
       </section>
     );
   };
 }
 
-export const renderSection = renderSectionFor("default", false);
+export const renderSection = renderSectionFor(false);
 
 interface UseSlotSection {
   // useSection can be either a `UseSlotSection` or a `Section[]` that is outside a slot.
@@ -154,7 +149,7 @@ const renderPage = (
     Object.keys(useSlotsFromChild).length > 0
       ? validSections.flatMap(useSlots(useSlotsFromChild))
       : validSections;
-  const _renderSection = renderSectionFor(editMode, isPreview);
+  const _renderSection = renderSectionFor(isPreview);
 
   if (layoutProps && isLivePageProps(layoutProps)) {
     const useSlots = indexedBySlotName(sections);
@@ -181,7 +176,7 @@ interface LivePageContext {
   renderSection: ReturnType<typeof renderSectionFor>;
 }
 const LivePageContext = createContext<LivePageContext>({
-  renderSection: renderSectionFor("default", false),
+  renderSection: renderSectionFor(false),
 });
 export const useLivePageContext = () => useContext(LivePageContext);
 
@@ -243,14 +238,11 @@ export function Preview(props: Props) {
   const mode = getMode(pageCtx?.url.searchParams);
 
   return (
-    <LivePageContext.Provider
-      value={{ renderSection: renderSectionFor(mode, true) }}
-    >
+    <LivePageContext.Provider value={{ renderSection: renderSectionFor(true) }}>
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       {renderPage(props, {}, mode, true)}
-      {mode === "edit" && <LivePageEditor />}
     </LivePageContext.Provider>
   );
 }
