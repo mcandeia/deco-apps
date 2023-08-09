@@ -1,6 +1,9 @@
 const apps = [{
-  dir: "./app",
-  name: "deco",
+  dir: "./site",
+  name: "site",
+}, {
+  dir: "./workflows",
+  name: "workflows",
 }];
 
 const config = {

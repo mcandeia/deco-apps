@@ -1,24 +1,14 @@
-import { buildApp } from "$live/blocks/app.ts";
+import { buildApp, mergeRuntimes } from "$live/blocks/app.ts";
 import { Routes } from "$live/flags/audience.ts";
-import { RedirectConfig } from "$live/handlers/redirect.ts";
 import { context } from "$live/live.ts";
+import type { AppRuntime, FnContext } from "$live/mod.ts";
 import { Apps } from "$live/mod.ts";
-import { mergeRuntimes } from "$live/blocks/app.ts";
-import type { AppRuntime, FnContext } from "../deps.ts";
 import manifest, { Manifest, name } from "./manifest.gen.ts";
 export { name };
-
-/**
- * @title {{{from}}} -> {{{to}}}
- */
-export interface Redirect extends RedirectConfig {
-  from: string;
-}
 
 export interface State {
   apps: Apps[];
   routes: Routes[];
-  redirects: Redirect[];
 }
 
 export default function App(
