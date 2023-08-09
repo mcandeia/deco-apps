@@ -9,7 +9,7 @@ import { isAwaitable } from "$live/engine/core/utils.ts";
 import { Route, Routes } from "$live/flags/audience.ts";
 import { isFreshCtx } from "$live/handlers/fresh.ts";
 import { Flag, LiveState, RouterContext } from "$live/types.ts";
-import { AppContext } from "site/mod.ts";
+import { AppContext } from "../mod.ts";
 import { ConnInfo, Handler } from "std/http/server.ts";
 
 export interface SelectionConfig {

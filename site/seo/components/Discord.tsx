@@ -3,8 +3,14 @@ import Image from "../../image/components/Image.tsx";
 import { textShortner } from "./helpers/textShortner.tsx";
 
 function DiscordArticle(props: PreviewItens) {
-  const { title, description, image, width, height, themeColor = "#000000" } =
-    props;
+  const {
+    title,
+    description,
+    image,
+    width,
+    height,
+    themeColor = "#000000",
+  } = props;
   const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
   const titleMaxLength = 50;
   const descriptionMaxLength = 300;
@@ -15,8 +21,7 @@ function DiscordArticle(props: PreviewItens) {
         class={`flex flex-col w-[4px]  bg-[${
           regex.test(themeColor) ? themeColor : "#D4DBD7"
         }] rounded-l-lg    overflow-hidden box-border `}
-      >
-      </div>
+      ></div>
       <div class="bg-discord-bg pt-2 pb-4 pl-3 pr-4 rounded-r-md max-w-[420px] sm:max-w-[488px] w-full">
         <h2 class="font-bold leading-[22px] mt-2 text-third">
           {textShortner(title, titleMaxLength)}
@@ -39,8 +44,14 @@ function DiscordArticle(props: PreviewItens) {
 }
 
 function DiscordWebsite(props: PreviewItens) {
-  const { title, description, image, width, height, themeColor = "#000000" } =
-    props;
+  const {
+    title,
+    description,
+    image,
+    width,
+    height,
+    themeColor = "#000000",
+  } = props;
   const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
   const titleMaxLength = 50;
   const descriptionMaxLength = 300;
@@ -51,8 +62,7 @@ function DiscordWebsite(props: PreviewItens) {
         class={`flex flex-col w-[4px]  bg-[${
           regex.test(themeColor) ? themeColor : "#D4DBD7"
         }] rounded-l-lg    overflow-hidden box-border `}
-      >
-      </div>
+      ></div>
       <div class="bg-discord-bg flex pt-2 pb-4 pl-3 pr-4 rounded-r-md  ">
         <div class=" rounded-r-md max-w-[392px] ">
           <h2 class="font-bold leading-[22px] mt-2 text-third max-w-[392px] w-full">

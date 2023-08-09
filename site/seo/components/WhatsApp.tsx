@@ -18,11 +18,11 @@ function WhatsAppBiggerImages(props: PreviewItens) {
         height={200}
       />
       <div class="text-[13px] bg-secondary p-3 leading-5">
-        <h3 class="text-secondary">
-          {textShortner(title, titleMaxLength)}
-        </h3>
-        <p class="text-common text-[12px] overflow-ellipsis 
-        overflow-hidden max-w-full  whitespace-nowrap">
+        <h3 class="text-secondary">{textShortner(title, titleMaxLength)}</h3>
+        <p
+          class="text-common text-[12px] overflow-ellipsis 
+        overflow-hidden max-w-full  whitespace-nowrap"
+        >
           {description}
         </p>
         <p class="text-[12px] text-common">{path}</p>
@@ -46,11 +46,11 @@ function WhatsAppSmallerImages(props: PreviewItens) {
         height={106}
       />
       <div class="text-[15px] flex flex-col px-[12px] justify-center bg-secondary rounded-r-lg  leading-5">
-        <h3 class="text-secondary">
-          {textShortner(title, titleMaxLength)}
-        </h3>
-        <p class="text-common text-[13px] overflow-ellipsis 
-        overflow-hidden max-w-[360px]  whitespace-nowrap">
+        <h3 class="text-secondary">{textShortner(title, titleMaxLength)}</h3>
+        <p
+          class="text-common text-[13px] overflow-ellipsis 
+        overflow-hidden max-w-[360px]  whitespace-nowrap"
+        >
           {description}
         </p>
         <p class="text-[13px] text-common">{path}</p>

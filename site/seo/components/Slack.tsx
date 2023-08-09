@@ -3,21 +3,12 @@ import type { PreviewItens } from "../types.ts";
 import { textShortner } from "./helpers/textShortner.tsx";
 
 function SlackArticle(props: PreviewItens) {
-  const {
-    title,
-    description,
-    image,
-    type,
-    width,
-    height,
-    path,
-  } = props;
+  const { title, description, image, type, width, height, path } = props;
   const containerMaxLength = 1248;
 
   return (
     <div class="flex text-[15px] flex-grow max-w-[522px] ">
-      <div class="flex flex-col w-[4px]  bg-divider rounded-lg    overflow-hidden box-border mr-3">
-      </div>
+      <div class="flex flex-col w-[4px]  bg-divider rounded-lg    overflow-hidden box-border mr-3"></div>
       <div class="flex flex-col w-[363px] leading-[22px] gap-[4px]">
         <div class="flex">
           <Image
@@ -31,9 +22,7 @@ function SlackArticle(props: PreviewItens) {
         </div>
         <div class="flex flex-grow flex-col gap-[4px] lg:max-h-[600px] mr-2 sm:flex-wrap ">
           <div>
-            <h3 class="font-bold text-third  overflow-ellipsis">
-              {title}
-            </h3>
+            <h3 class="font-bold text-third  overflow-ellipsis">{title}</h3>
             <p class="max-h-[250px] max-w-[350px] overflow-ellipsis break-words">
               {textShortner(description, containerMaxLength - title.length)}
             </p>
@@ -52,21 +41,15 @@ function SlackArticle(props: PreviewItens) {
 }
 
 function SlackWebsite(props: PreviewItens) {
-  const {
-    title,
-    description,
-    image,
-    width,
-    height,
-    path,
-  } = props;
+  const { title, description, image, width, height, path } = props;
   return (
     <div class="flex  w-[522px] sm:w-[522px]">
-      <div class="min-w-[4px] w-[4px] bg-divider 
+      <div
+        class="min-w-[4px] w-[4px] bg-divider 
             rounded-lg    
             box-border 
-            ">
-      </div>
+            "
+      ></div>
 
       <div class="flex flex-col  px-[12px] flex-grow ">
         <div class="flex">
