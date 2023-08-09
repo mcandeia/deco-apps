@@ -29,7 +29,14 @@ export default function App(
     resolvers: context.releaseResolver!.getResolvers(),
     manifest: context.manifest!,
   };
-  return [...apps, runtime].reduce(mergeRuntimes, currentAppRuntime);
+  return {
+    ...[...apps, runtime].reduce(mergeRuntimes, currentAppRuntime),
+    resolvables: {
+      "./routes/[...catchall].tsx": {
+        __resolveType: "site/handlers/router.ts",
+      },
+    },
+  };
 }
 
 export type AppContext = FnContext<State, Manifest>;
