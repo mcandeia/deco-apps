@@ -1,16 +1,9 @@
-import { buildApp, mergeRuntimes } from "$live/blocks/app.ts";
 import { Routes } from "$live/flags/audience.ts";
-import { context } from "$live/live.ts";
-import type { AppRuntime, FnContext } from "$live/mod.ts";
-import { Apps } from "$live/mod.ts";
+import type { App, FnContext } from "$live/mod.ts";
+import { asResolved } from "$live/mod.ts";
 import manifest, { Manifest, name } from "./manifest.gen.ts";
-export { name };
 
 export interface State {
-  /**
-   * @title Installed Apps
-   */
-  apps: Apps[];
   /**
    * @title Site Map
    */
@@ -22,15 +15,11 @@ export interface State {
  */
 export default function App(
   state: State,
-): AppRuntime {
-  const { apps } = state;
-  const runtime = buildApp({ manifest, state });
-  const currentAppRuntime: AppRuntime = {
-    resolvers: context.releaseResolver!.getResolvers(),
-    manifest: context.manifest!,
-  };
+): App<Manifest, State> {
   return {
-    ...[...apps, runtime].reduce(mergeRuntimes, currentAppRuntime),
+    name,
+    state,
+    manifest,
     resolvables: {
       "./routes/[...catchall].tsx": {
         __resolveType: "site/handlers/router.ts",
@@ -38,6 +27,37 @@ export default function App(
     },
   };
 }
+
+const deferPropsResolve = (
+  routes: Routes,
+): Routes => {
+  if (Array.isArray(routes)) {
+    const newRoutes = [];
+    for (const route of routes) {
+      newRoutes.push({
+        ...route,
+        handler: {
+          value: asResolved(route.handler.value, true),
+        },
+      });
+    }
+    return newRoutes;
+  }
+  return routes;
+};
+
+export const onBeforeResolveProps = <T extends { routes?: Routes[] }>(
+  props: T,
+): T => {
+  if (Array.isArray(props?.routes)) {
+    const newRoutes: T = {
+      ...props,
+      routes: props.routes.map(deferPropsResolve),
+    };
+    return newRoutes;
+  }
+  return props;
+};
 
 export type AppContext = FnContext<State, Manifest>;
 
